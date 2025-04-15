@@ -81,7 +81,7 @@ body {
   .circle2 {
     width: 200px;
     height: 200px;
-    background-color: #7f8c8d;
+    background-color: #c5e3e6;
     animation-delay: 1.5s;
   }
   @keyframes pulse {
