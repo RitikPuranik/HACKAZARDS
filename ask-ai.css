@@ -1,0 +1,35 @@
+body {
+    background-color: #f4f5fb;
+  }
+  
+  .navbar-custom {
+    background: linear-gradient(to right, #7c3aed, #6366f1);
+    color: white;
+  }
+  
+  .navbar-custom .navbar-brand {
+    color: white;
+    font-weight: bold;
+  }
+  
+  .ai-box {
+    background: linear-gradient(to right, #ede9fe, #e0e7ff);
+    border-radius: 15px;
+    padding: 25px;
+  }
+  
+  .ai-response {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-left: 4px solid #7c3aed;
+  }
+  
+  .btn-primary {
+    background-color: #7c3aed;
+    border-color: #7c3aed;
+  }
+  
+  .btn-primary:hover {
+    background-color: #6d28d9;
+    border-color: #6d28d9;
+  }

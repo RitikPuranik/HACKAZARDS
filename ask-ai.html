@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ask AI for Ideas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="ask-ai.css">
+</head>
+<body>
+
+  <nav class="navbar navbar-custom px-4 py-2">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+      <span class="navbar-brand">Ask AI for Ideas</span>
+      <a href="index2.html" class="btn btn-light">⬅ Back</a>
+    </div>
+  </nav>
+
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="ai-box shadow">
+          <h5 class="mb-3">💬 Describe Your Project or Problem</h5>
+          <textarea id="userPrompt" class="form-control mb-3" rows="5" placeholder="Tell AI what you're working on, or what challenge you're trying to solve..."></textarea>
+          <button id="generateBtn" class="btn btn-primary w-100">⚡ Generate Ideas</button>
+        </div>
+
+        <div class="ai-response mt-4 p-4 rounded d-none" id="responseBox">
+          <h6>✨ AI Suggestions:</h6>
+          <ul id="responseList"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const responseBox = document.getElementById("responseBox");
+    const responseList = document.getElementById("responseList");
+    const promptInput = document.getElementById("userPrompt");
+    const generateBtn = document.getElementById("generateBtn");
+
+    const GROQ_API_KEY = "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"; // Replace with your real key
+    const API_URL = "https://api.groq.com/openai/v1/chat/completions";
+
+    generateBtn.addEventListener("click", async () => {
+      const prompt = promptInput.value.trim();
+      if (!prompt) {
+        alert("Please enter your idea or problem.");
+        return;
+      }
+
+      responseBox.classList.remove("d-none");
+      responseList.innerHTML = "<li><em>Thinking...</em></li>";
+
+      try {
+        const res = await fetch(API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${GROQ_API_KEY}`
+          },
+          body: JSON.stringify({
+            model: "llama3-8b-8192",
+            messages: [
+              { role: "system", content: "You are an assistant that gives creative and practical hackathon project ideas." },
+              { role: "user", content: prompt }
+            ],
+            temperature: 0.7
+          })
+        });
+
+        const data = await res.json();
+        const reply = data.choices?.[0]?.message?.content || "No suggestions found.";
+
+        // Convert each idea into a <li>
+        const lines = reply.split('\n').filter(line => line.trim() !== '');
+        responseList.innerHTML = lines.map(line => `<li>${line.replace(/^\d+\.\s*/, '')}</li>`).join('');
+      } catch (err) {
+        responseList.innerHTML = `<li class="text-danger">❌ Error: ${err.message}</li>`;
+      }
+    });
+  </script>
+</body>
+</html>

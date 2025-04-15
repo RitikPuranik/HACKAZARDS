@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Subscription Plans</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #2b6cb0;
+      color: white;
+      padding: 1.5rem 2rem;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .header-content div {
+      flex: 1;
+    }
+
+    .btn-light {
+      background: white;
+      color: #2b6cb0;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn-light:hover {
+      background: #e2e8f0;
+    }
+
+    .plans-container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+
+    .plan {
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .plan:hover {
+      transform: translateY(-5px);
+    }
+
+    .plan h2 {
+      margin-bottom: 0.5rem;
+      color: #2b6cb0;
+    }
+
+    .price {
+      font-size: 2rem;
+      margin: 1rem 0;
+      transition: all 0.3s ease-in-out;
+    }
+
+    ul.features {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    ul.features li {
+      margin: 0.5rem 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #2b6cb0;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: #22589b;
+    }
+
+    .toggle-container {
+      text-align: center;
+      margin: 1rem 0 2rem;
+    }
+
+    .toggle-container label {
+      font-size: 1rem;
+      margin-left: 0.5rem;
+    }
+
+    .highlight {
+      border: 2px solid #2b6cb0;
+    }
+
+    @media (max-width: 500px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+      .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <div>
+        <h1>Choose Your Plan</h1>
+        <p>Simple pricing, no hidden fees. Upgrade anytime.</p>
+      </div>
+      <a href="index.html" class="btn-light">⬅ BACK</a>
+    </div>
+  </header>
+
+  <div class="toggle-container">
+    <input type="checkbox" id="billingToggle" onchange="togglePrices()">
+    <label for="billingToggle">Toggle Yearly Billing</label>
+  </div>
+
+  <section class="plans-container">
+    <div class="plan">
+      <h2>Free</h2>
+      <div class="price" id="price-free">$0<span>/mo</span></div>
+      <ul class="features">
+        <li>Basic Idea Submission</li>
+        <li>5 Votes per Month</li>
+        <li>Community Support</li>
+      </ul>
+      <a href="#" class="btn">Get Started</a>
+    </div>
+
+    <div class="plan highlight">
+      <h2>Pro</h2>
+      <div class="price" id="price-pro">$15<span>/mo</span></div>
+      <ul class="features">
+        <li>Unlimited Ideas</li>
+        <li>Unlimited Voting</li>
+        <li>AI Suggestions</li>
+        <li>Email Support</li>
+      </ul>
+      <a href="#" class="btn">Choose Pro</a>
+    </div>
+
+    <div class="plan">
+      <h2>Enterprise</h2>
+      <div class="price" id="price-enterprise">$49<span>/mo</span></div>
+      <ul class="features">
+        <li>Team Access</li>
+        <li>Custom Integrations</li>
+        <li>Priority Support</li>
+        <li>Dedicated Manager</li>
+      </ul>
+      <a href="#" class="btn">Contact Us</a>
+    </div>
+  </section>
+
+  <script>
+    const priceMap = {
+      monthly: {
+        free: "$0",
+        pro: "$15",
+        enterprise: "$49"
+      },
+      yearly: {
+        free: "$0",
+        pro: "$150",
+        enterprise: "$490"
+      }
+    };
+
+    function togglePrices() {
+      const isYearly = document.getElementById("billingToggle").checked;
+      document.getElementById("price-free").innerHTML = priceMap[isYearly ? "yearly" : "monthly"].free + "<span>/" + (isYearly ? "yr" : "mo") + "</span>";
+      document.getElementById("price-pro").innerHTML = priceMap[isYearly ? "yearly" : "monthly"].pro + "<span>/" + (isYearly ? "yr" : "mo") + "</span>";
+      document.getElementById("price-enterprise").innerHTML = priceMap[isYearly ? "yearly" : "monthly"].enterprise + "<span>/" + (isYearly ? "yr" : "mo") + "</span>";
+    }
+  </script>
+
+</body>
+</html>

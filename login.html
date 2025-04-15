@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - HackWise</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <button id="openPopup">Login</button>
+
+  <!-- Login Popup Modal -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup-box">
+      <span class="close-btn" id="closePopup">&times;</span>
+      <h2>Welcome back 👋</h2>
+      <p class="subtext">Login to continue with <strong>HackWise</strong></p>
+
+      <form action="LoginServlet" method="post">
+        <div class="input-field">
+          <label><i class="fas fa-user"></i></label>
+          <input type="text" name="username" placeholder="Username" required>
+        </div>
+        <div class="input-field">
+          <label><i class="fas fa-lock"></i></label>
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <button class="login-btn" type="submit">Login</button>
+      </form>
+      <div class="bottom-link">
+        Don't have an account? <a href="#">Sign up</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const popup = document.getElementById('popupOverlay');
+    const openBtn = document.getElementById('openPopup');
+    const closeBtn = document.getElementById('closePopup');
+
+    openBtn.onclick = () => popup.style.display = 'flex';
+    closeBtn.onclick = () => popup.style.display = 'none';
+    window.onclick = e => { if (e.target === popup) popup.style.display = 'none'; };
+  </script>
+
+</body>
+</html>

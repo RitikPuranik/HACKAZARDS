@@ -1,0 +1,18 @@
+body {
+    background-color: #f4f5fb;
+  }
+  
+  .navbar-custom {
+    background: linear-gradient(to right, #7c3aed, #6366f1);
+    color: white;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    color: white;
+  }
+  
+  .idea-card {
+    background: linear-gradient(to right, #ede9fe, #e0e7ff);
+    border-left: 5px solid #7c3aed;
+  }

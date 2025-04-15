@@ -1,0 +1,32 @@
+body {
+    background-color: #f4f5fb;
+  }
+  
+  .navbar-custom {
+    background: linear-gradient(to right, #7c3aed, #6366f1);
+    color: white;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    color: white;
+  }
+  
+  .central-node {
+    background: #7c3aed;
+    color: white;
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .node {
+    background: #e0e7ff;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 20px;
+    font-weight: 500;
+  }
