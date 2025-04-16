@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Slide Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- IDEA INPUT -->
+  <div class="input-section" id="ideaInputSection">
+    <h2 style="color: #f75caa;">Enter Presentation Description:</h2>
+    <textarea id="ideaInput" rows="4" cols="50" placeholder="e.g., Create a presentation on Artificial Intelligence including intro, use cases, advantages..."></textarea>
+    <br>
+    <button id="generateBtn" class="btn btn-primary w-100" onclick="generateFromIdea()">⚡ Generate  Presentation</button>
+    <br><br>
+    <a href="index2.html" class="btn btn-light">⬅ Back</a>
+  </div>
+
+  <!-- TEMPLATE SELECTOR -->
+  <div class="template-bar hidden" id="templateBar">
+    <label style="color: #111;">Choose Template:</label>
+    <select id="templateSelector" onchange="applyTemplate(this.value)">
+      <option value="default">Default</option>
+      <option value="infographic">Infographic</option>
+      <option value="dark">Dark Mode</option>
+      <option value="corporate">Corporate Blue</option>
+      <option value="creative">Creative Colorful</option>
+    </select>
+  </div>
+
+  <!-- SLIDE EDITOR -->
+  <div class="slide-editor hidden" id="slideEditor">
+    <div class="toolbar">
+      <button onclick="addSlide()">➕ New Slide</button>
+<button onclick="duplicateSlide()">📄 Duplicate</button>
+<button onclick="deleteSlide()">🗑️ Delete</button>
+
+      <input type="color" id="bgColor" onchange="changeBackground()" />
+    </div>
+
+    <div class="container">
+      <div class="sidebar" id="slideList"></div>
+      <div class="editor" id="editor"></div>
+    </div>
+  </div>
+
+  <script>
+    let slides = [];
+    let currentSlide = null;
+
+    function generateFromIdea() {
+      const idea = document.getElementById("ideaInput").value.trim();
+      if (!idea) return alert("Please enter an idea or topic.");
+
+      // Hide input and show editor
+      document.getElementById("ideaInputSection").classList.add("hidden");
+      document.getElementById("slideEditor").classList.remove("hidden");
+      document.getElementById("templateBar").classList.remove("hidden");
+
+      // Simulate AI-generated slides (can replace with Groq/OpenAI later)
+      slides = [
+        createSlide({ title: "Introduction to AI", text: "Overview of Artificial Intelligence and its importance." }),
+        createSlide({ title: "Applications", text: "AI is used in healthcare, finance, education, and more." }),
+        createSlide({ title: "Advantages", text: "Increased efficiency, automation, accuracy." }),
+        createSlide({ title: "Challenges", text: "Ethical concerns, bias, unemployment risk." })
+      ];
+
+      renderThumbnails();
+      setActiveSlide(0);
+    }
+
+    function createSlide(content = { title: "Title", text: "Click to edit text" }) {
+      const slide = document.createElement("div");
+      slide.className = "slide default";
+      slide.style.background = "#ffffff";
+
+      const title = document.createElement("h2");
+      title.contentEditable = true;
+      title.textContent = content.title;
+
+      const text = document.createElement("p");
+      text.contentEditable = true;
+      text.textContent = content.text;
+
+      slide.appendChild(title);
+      slide.appendChild(text);
+      return slide;
+    }
+
+    function renderThumbnails() {
+      const list = document.getElementById("slideList");
+      list.innerHTML = "";
+      slides.forEach((s, index) => {
+        const thumb = document.createElement("div");
+        thumb.className = "thumbnail";
+        thumb.innerText = "Slide " + (index + 1);
+        thumb.onclick = () => setActiveSlide(index);
+        list.appendChild(thumb);
+      });
+    }
+
+    function setActiveSlide(index) {
+      currentSlide = index;
+      const editor = document.getElementById("editor");
+      editor.innerHTML = "";
+      editor.appendChild(slides[index]);
+    }
+
+    function addSlide() {
+      const newSlide = createSlide();
+      slides.push(newSlide);
+      renderThumbnails();
+      setActiveSlide(slides.length - 1);
+    }
+
+    function duplicateSlide() {
+      if (currentSlide !== null) {
+        const clone = slides[currentSlide].cloneNode(true);
+        slides.push(clone);
+        renderThumbnails();
+        setActiveSlide(slides.length - 1);
+      }
+    }
+
+    function deleteSlide() {
+      if (currentSlide !== null && slides.length > 1) {
+        slides.splice(currentSlide, 1);
+        renderThumbnails();
+        setActiveSlide(Math.max(0, currentSlide - 1));
+      }
+    }
+
+    function changeBackground() {
+      const color = document.getElementById("bgColor").value;
+      if (currentSlide !== null) {
+        slides[currentSlide].style.background = color;
+      }
+    }
+
+    function applyTemplate(template) {
+      slides.forEach(slide => {
+        slide.className = `slide ${template}`;
+      });
+    }
+  </script>
+
+  <style>
+     body {
+      background-image:url(image.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    .input-section {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .input-section textarea {
+      width: 60%;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .input-section button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .template-bar {
+      padding: 10px;
+      background: #eee;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .slide-editor {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .toolbar {
+      background: #f0f0f0;
+      padding: 10px;
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+    }
+
+    .sidebar {
+      width: 150px;
+      background: #fafafa;
+      border-right: 1px solid #ccc;
+      overflow-y: auto;
+    }
+
+    .thumbnail {
+      height: 60px;
+      margin: 5px;
+      background: white;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .editor {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #e9e9e9;
+    }
+    .btn-primary {
+    background-color: #fd91b1;
+    border-radius: 5px;
+     border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #eb7881;
+   
+  }
+    .slide {
+      width: 800px;
+      height: 450px;
+      background: white;
+      border: 2px solid #444;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .slide h2, .slide p {
+      outline: none;
+    }
+
+    .slide.default { background: #ffffff; color: black; }
+    .slide.infographic { background: #fdf6e3; color: #333; font-family: 'Segoe UI'; }
+    .slide.dark { background: #333; color: white; }
+    .slide.corporate { background: #e6f0ff; color: #003366; }
+    .slide.creative { background: linear-gradient(to right, #ffecd2, #fcb69f); color: #111; }
+
+    .hidden { display: none; }
+    .input-section textarea {
+      width: 60%;
+      padding: 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .btn-light {
+      background: rgb(245, 148, 205);
+      color: #dde2e7;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn-light:hover {
+      background: #ee83f1;
+    } */
+     /* GENERAL STYLING */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #ffe1f3, #f0f9ff);
+}
+
+/* TOOLBAR */
+.toolbar {
+  background: white;
+  padding: 12px 20px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.toolbar button {
+  padding: 8px 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #f75caa;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.toolbar button:hover {
+  background: #e13f94;
+}
+
+.toolbar input[type=color] {
+  width: 36px;
+  height: 36px;
+  border: none;
+  cursor: pointer;
+}
+
+/* CONTAINER */
+.container {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+/* SIDEBAR - THUMBNAILS */
+.sidebar {
+  width: 160px;
+  background: #fdfdfd;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.thumbnail {
+  height: 80px;
+  margin-bottom: 10px;
+  background: #fff;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: 0.2s;
+}
+
+.thumbnail:hover, .thumbnail.active {
+  border-color: #f75caa;
+  transform: scale(1.03);
+}
+
+/* EDITOR */
+.editor {
+  flex: 1;
+  background: #e9e9e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* SLIDE DESIGN */
+.slide {
+  width: 960px;
+  height: 540px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  padding: 40px;
+  box-sizing: border-box;
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.slide h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.slide p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Slide Templates */
+.slide.default {
+  background: #ffffff;
+  color: #222;
+}
+
+.slide.infographic {
+  background: #fcf6ed;
+  font-family: 'Segoe UI', sans-serif;
+  color: #2c2c2c;
+}
+
+.slide.dark {
+  background: #1a1a1a;
+  color: #f1f1f1;
+}
+
+.slide.corporate {
+  background: #e0edff;
+  color: #003060;
+}
+
+.slide.creative {
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+  color: #2c2c2c;
+}
+
+/* Responsive Fixes */
+@media screen and (max-width: 1000px) {
+  .slide {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .thumbnail {
+    font-size: 12px;
+  }
+}
+
+  </style>
+</body>
+</html>

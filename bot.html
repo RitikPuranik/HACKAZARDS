@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Groq Chatbot</title>
+  <link rel="stylesheet" href="bot.css" />
+</head>
+<body> 
+  <div class="heading-bar">
+    <a href="index.html" class="btn-light">⬅ BACK</a>
+    <div class="heading-text">
+      <h1 class="main-heading"><span class="typewriter-text"></span></h1>
+      <h5 class="sub-heading">*AI Assistant powered by Groq*</h5>
+    </div>
+  </div>
+  <div class="chat-container">
+    <div class="chat-box">
+      <div class="chat-illustration">
+        <img src="aibot.png" alt="Chatbot Illustration" />
+      </div>
+      <div class="chat-card">
+        <div id="chat-messages" class="chat-messages"></div>
+        <div class="chat-input-area">
+          <input id="userInput" type="text" placeholder="Type your message..." onkeydown="handleKey(event)" />
+          <button onclick="startVoice()"><img src="microphone-solid.svg" alt="mic" width="22" height="22" onerror="this.src='camera-solid.svg'; console.error('Mic image failed to load')"></button>
+         
+          <label for="imageInput"><img src="camera-solid.svg"></label>
+          
+
+          <input type="file" id="imageInput" accept="image/*" onchange="handleImage(event)" style="display: none;" />
+          <button onclick="sendMessage()" style="color: black; width:15%; height:100%">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="bot.js"></script>
+</body>
+</html>
