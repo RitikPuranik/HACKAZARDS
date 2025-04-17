@@ -1,50 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
 
-  <title>Idea Board</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="idea-board.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>💡 Stylish Idea Board</title>
+    <link rel="stylesheet" href="idea-board.css">
+    <script defer src="idea-board.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-custom px-4 py-2">
-  <div class="container-fluid d-flex justify-content-between align-items-center">
-    <span class="navbar-brand">🧠 Idea Board </span>
-    <a href="index2.html" class="btn btn-light">⬅ Back</a>
-  </div>
-</nav>
+    <div class="header">
+        <h1>💡 <span>Idea Board</span></h1>
+        <button class="back-btn" onclick="history.back()">← Back</button>
+    </div>
 
-<div class="container py-4">
-  <div class="mb-3">
-    <textarea id="ideaInput" class="form-control" rows="2" placeholder="Type your idea here..."></textarea>
-    <button id="addIdeaBtn" class="btn btn-primary mt-2">➕ Add Idea</button>
-  </div>
-
-  <div class="row" id="ideaContainer">
-    <!-- Sticky idea cards will go here -->
-  </div>
-</div>
-
-<script>
-  const addBtn = document.getElementById("addIdeaBtn");
-  const container = document.getElementById("ideaContainer");
-
-  addBtn.addEventListener("click", () => {
-    const text = document.getElementById("ideaInput").value.trim();
-    if (!text) return;
-    const col = document.createElement("div");
-    col.className = "col-md-4 mb-3";
-    col.innerHTML = `
-      <div class="idea-card p-3 rounded shadow-sm">
-        <p>${text}</p>
-      </div>
-    `;
-    container.appendChild(col);
-    document.getElementById("ideaInput").value = "";
-  });
-</script>
-
+    <div class="container">
+        <textarea id="ideaInput" placeholder="Type your brilliant idea..."></textarea>
+        <button class="add-btn" onclick="addIdea()">+ Add Idea</button>
+        <div id="ideaList" class="idea-list"></div>
+    </div>
 </body>
 </html>
+

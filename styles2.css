@@ -1,43 +1,218 @@
+/* Global Body Styles */
 body {
-    background-color: #f8f9fc;
-  }
-  
-  .navbar-custom {
-    background: linear-gradient(to right, #7c3aed, #6366f1);
-    color: white;
-  }
-  
+  background-color: #f8f9fc;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar Customization */
+.navbar-custom {
+  background: linear-gradient(to right, #7c3aed, #6366f1);
+  color: white;
+  border-radius: 0;
+}
+
+.navbar-custom .navbar-brand {
+  color: white;
+  font-weight: bold;
+}
+
+.navbar-custom .btn {
+  background-color: #f2f5f8;
+  color: rgb(2, 11, 12);
+  border: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-custom .btn:hover {
+  background-color: #74dbf5;
+}
+
+/* Idea Card Design */
+.card {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.idea-card {
+  background-color: #ffffff;
+}
+
+.card h6 {
+  font-weight: bold;
+  color: #333;
+}
+
+.card p {
+  color: #555;
+}
+
+.card .tag {
+  background-color: #e5e7eb;
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  margin: 2px;
+}
+
+.card .vote-icon {
+  color: #8b5cf6;
+  font-size: 1.2rem;
+}
+
+/* Tag Styling */
+.card-tag {
+  font-size: 0.75rem;
+  margin-right: 0.25rem;
+}
+
+/* Sidebar Form Styling */
+.side-form {
+  background: linear-gradient(to right, #ede9fe, #e0e7ff);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.side-form .form-label {
+  font-weight: bold;
+  color: #333;
+}
+
+.side-form .form-control {
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.side-form button {
+  background-color: #7c3aed;
+  color: white;
+  font-weight: bold;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.side-form button:hover {
+  background-color: #5b26d4;
+}
+
+/* Buttons for Idea Board, Mind Map, and PPT Generator */
+.btn-custom {
+  background-color: #7d579c;
+  color: white;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+  background-color: #a8ebf0;
+}
+
+/* Text Styling */
+.text-muted {
+  color: #777;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  /* Adjust Navbar for smaller screens */
   .navbar-custom .navbar-brand {
-    color: white;
-    font-weight: bold;
-  }
-  
-  .card-tag {
-    font-size: 0.75rem;
-    margin-right: 0.25rem;
-  }
-  
-  .idea-card {
-    border: none;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-  }
-  
-  .tag {
-    background-color: #e5e7eb;
-    border-radius: 20px;
-    padding: 3px 10px;
-    font-size: 0.75rem;
-    margin: 2px;
-  }
-  
-  .side-form {
-    background: linear-gradient(to right, #ede9fe, #e0e7ff);
-    border-radius: 10px;
-    padding: 20px;
-  }
-  
-  .vote-icon {
-    color: #8b5cf6;
     font-size: 1.2rem;
   }
+
+  .navbar-custom .btn {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  /* Idea Section - Stack the buttons */
+  .row.g-4 {
+    flex-direction: column;
+    
+  }
+
+  .col-md-6 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  /* Side Form Adjustments */
+  .side-form {
+    padding: 15px;
+  }
+
+  .side-form button {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .card h6 {
+    font-size: 1rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  /* Increase tag font size for mobile */
+  .tag {
+    font-size: 0.8rem;
+  }
+
+  .vote-icon {
+    font-size: 1.5rem;
+  }
+
+  /* Adjust spacing between elements in side form */
+  .side-form .form-control {
+    font-size: 1rem;
+  }
+}
+
+/* Further responsiveness for very small screens (like mobile phones) */
+@media (max-width: 480px) {
+  .navbar-custom .navbar-brand {
+    font-size: 1.1rem;
+  }
+
+  .navbar-custom .btn {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .card h6 {
+    font-size: 0.9rem;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+  }
+
+  .side-form button {
+    font-size: 0.9rem;
+  }
+
+  /* Further compact the Idea Section for smaller screens */
+  .btn-custom {
+    font-size: 0.9rem;
+    padding: 12px;
+  }
+
+  /* Tag padding reduction for very small screens */
+  .tag {
+    padding: 2px 6px;
+    font-size: 0.7rem;
+  }
+
+  .card-tag {
+    font-size: 0.7rem;
+  }
+}

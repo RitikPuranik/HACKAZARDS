@@ -1,4 +1,4 @@
-body {
+/* body {
     background-color: #f4f5fb;
   }
   
@@ -29,4 +29,104 @@ body {
     margin: 10px;
     border-radius: 20px;
     font-weight: 500;
+  } */
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  body {
+    background: linear-gradient(to bottom right, #f4f7ff, #e0eaff);
+    padding: 20px;
+  }
+
+  .header {
+    background: linear-gradient(to right, #7b2ff7, #f107a3);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+
+  .header h1 {
+    font-size: 26px;
+  }
+
+  .back-button {
+    background: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #7b2ff7;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: background 0.3s ease;
+  }
+
+  .back-button:hover {
+    background: #f0e8ff;
+  }
+
+  .mindmap-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  .central-idea {
+    background: linear-gradient(to right, #7b2ff7, #f107a3);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 60px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+  }
+
+  .central-idea:hover {
+    transform: scale(1.05);
+  }
+
+  .branches {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .branch {
+    background: #eef2ff;
+    padding: 20px 30px;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2a2a2a;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .branch:hover {
+    background: #d9e1ff;
+    transform: scale(1.05);
+  }
+
+  .branch::before {
+    content: '🔹';
+    position: absolute;
+    left: -20px;
+    font-size: 18px;
+    top: 50%;
+    transform: translateY(-50%);
   }

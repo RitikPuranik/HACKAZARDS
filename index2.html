@@ -12,54 +12,71 @@
   <nav class="navbar navbar-custom px-4 py-2">
     <div class="container-fluid d-flex justify-content-between">
       <span class="navbar-brand">HackWise Ideation Space</span>
-      <a href="./ask-ai.html" style="margin-left:60% ;" class="btn btn-light"> AI for Ideas</a></butto>
       <a href="index.html" class="btn btn-light">⬅ Back</a>
     </div>
   </nav>
 
   <div class="container-fluid mt-4">
     <div class="row px-4">
+      <!-- Focused Section: Idea Board, Mind Map, PPT Generator -->
       <div class="col-lg-8">
-        <div class="mb-3">
-        <a href="idea-board.html" class="btn btn-outline-secondary me-2">Idea Board</bu>
-       <a href="mind-map.html" class="btn btn-outline-secondary">Mind Map</a></button>
-       <a href="ppt.html" class="btn btn-outline-secondary">Presentation Genrator</a></button>
-        </div>
-        <h5 class="mb-3">Current Ideas</h5>
-        <div class="row g-4">
+        <div class="d-flex flex-wrap justify-content-center mb-4 gap-3">
+          <!-- Two buttons per row -->
           <div class="col-md-6">
-            <div class="card idea-card p-3">
-              <h6><strong>AI Health Assistant</strong></h6>
-              <div class="d-flex flex-wrap mb-2">
-                <span class="tag">AI</span>
-                <span class="tag">Healthcare</span>
-                <span class="tag">Mobile</span>
-              </div>
-              <p class="mb-2">An app that monitors health metrics and provides personalized recommendations.</p>
-              <div class="d-flex justify-content-between text-muted">
-                <span>Healthcare</span>
-                <span><i class="vote-icon">🚀</i> 3</span>
-              </div>
-            </div>
+            <a href="idea-board.html" class="btn btn-custom w-100">Idea Board</a>
           </div>
           <div class="col-md-6">
-            <div class="card idea-card p-3">
-              <h6><strong>Eco-Friendly Smart Garden</strong></h6>
-              <div class="d-flex flex-wrap mb-2">
-                <span class="tag">IoT</span>
-                <span class="tag">Environment</span>
-                <span class="tag">Hardware</span>
+            <a href="mind-map.html" class="btn btn-custom w-100">Mind Map</a>
+          </div>
+          <div class="col-md-6">
+            <a href="ppt.html" class="btn btn-custom w-100">Presentation Generator</a>
+          </div>
+          <div class="col-md-6">
+            <a href="./ask-ai.html" class="btn btn-custom w-100">AI For Ideas</a>
+          </div>
+          <div class="col-md-6">
+            <a href="dfd.html" class="btn btn-custom w-100">DFD Generator</a>
+          </div>
+        </div>
+
+        <div class="mt-5">
+          <h5 class="mb-3">Current Ideas</h5>
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="card idea-card p-3">
+                <h6><strong>AI Health Assistant</strong></h6>
+                <div class="d-flex flex-wrap mb-2">
+                  <span class="tag">AI</span>
+                  <span class="tag">Healthcare</span>
+                  <span class="tag">Mobile</span>
+                </div>
+                <p class="mb-2">An app that monitors health metrics and provides personalized recommendations.</p>
+                <div class="d-flex justify-content-between text-muted">
+                  <span>Healthcare</span>
+                  <span><i class="vote-icon">🚀</i> 3</span>
+                </div>
               </div>
-              <p class="mb-2">IoT system that optimizes water usage and plant care based on environmental conditions.</p>
-              <div class="d-flex justify-content-between text-muted">
-                <span>Sustainability</span>
-                <span><i class="vote-icon">🚀</i> 5</span>
+            </div>
+            <div class="col-md-6">
+              <div class="card idea-card p-3">
+                <h6><strong>Eco-Friendly Smart Garden</strong></h6>
+                <div class="d-flex flex-wrap mb-2">
+                  <span class="tag">IoT</span>
+                  <span class="tag">Environment</span>
+                  <span class="tag">Hardware</span>
+                </div>
+                <p class="mb-2">IoT system that optimizes water usage and plant care based on environmental conditions.</p>
+                <div class="d-flex justify-content-between text-muted">
+                  <span>Sustainability</span>
+                  <span><i class="vote-icon">🚀</i> 5</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- Sidebar: Add New Idea Form -->
       <div class="col-lg-4 mt-4 mt-lg-0">
         <div class="side-form">
           <h6 class="mb-3">💡 Add New Idea</h6>

@@ -1,18 +1,269 @@
+/* General Reset & Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #f4f5fb;
-  }
-  
-  .navbar-custom {
-    background: linear-gradient(to right, #7c3aed, #6366f1);
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(120deg, #1e1e2f, #2c2c3a);
+    color: #fff;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+}
+
+.header h1 span {
+    background: linear-gradient(to right, #ff6ec4, #7873f5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.back-btn {
+    background: #1e90ff;
     color: white;
-  }
-  
-  .navbar-brand {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
     font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: #005ce6;
+}
+
+/* Input & Button */
+.container {
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#ideaInput {
+    width: 80%;
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    backdrop-filter: blur(10px);
+    outline: none;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px #00ffe0;
+}
+
+.add-btn {
+    background: linear-gradient(90deg, #ff00c8, #6a00ff);
+    border: none;
     color: white;
-  }
-  
-  .idea-card {
-    background: linear-gradient(to right, #ede9fe, #e0e7ff);
-    border-left: 5px solid #7c3aed;
-  }
+    padding: 12px 28px;
+    font-size: 18px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px #ff00c8;
+}
+
+.add-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px #ff00c8;
+}
+
+/* Idea Cards */
+.idea-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.idea-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, background 0.3s;
+}
+
+.idea-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.idea-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+  justify-items: center;
+}
+
+.idea-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  width: 230px;
+  height: 230px;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.idea-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Modal Popup */
+.modal.hidden {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #2c2c3a;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #ff00c8;
+  text-align: center;
+}
+
+.modal-content input {
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  margin: 10px 0 20px;
+  font-size: 16px;
+  background: #fff;
+}
+
+.modal-content button {
+  background: linear-gradient(90deg, #ff00c8, #6a00ff);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.modal-content button:hover {
+  background: linear-gradient(90deg, #6a00ff, #ff00c8);
+}
+.idea-card h3.idea-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.idea-card p.idea-description {
+  font-size: 16px;
+  color: #ccc;
+  flex-grow: 1;
+}
+
+/* Editor modal */
+.editor-box {
+  background: #2e2e3e;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255, 0, 200, 0.4);
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-box input,
+.editor-box textarea {
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  width: 100%;
+  background: #fff;
+}
+
+.editor-box textarea {
+  resize: vertical;
+  min-height: 120px;
+  max-height: 250px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal-actions button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background: linear-gradient(90deg, #ff00c8, #6a00ff);
+  border: none;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.idea-label {
+  font-weight: bold;
+  font-size: 14px;
+  color: #ff00d4;
+  background: linear-gradient(90deg, #ff00c8, #6a00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.idea-label.big {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+  background: linear-gradient(90deg, #ff00c8, #00ffe5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
