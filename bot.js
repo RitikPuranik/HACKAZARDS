@@ -93,9 +93,50 @@ function handleImage(event) {
 
     document.getElementById("chat-messages").appendChild(message);
     document.getElementById("chat-messages").scrollTop = 9999;
+
+    // Instead of sending the real image, send a fake text to Groq
+    sendImageAsText();
   };
   reader.readAsDataURL(file);
 }
+
+// This function sends a fake text message to Groq
+async function sendImageAsText() {
+  const fakeText = "The user uploaded an image. Please respond accordingly.";
+  addMessage("user", fakeText);
+
+  try {
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer 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"
+      },
+      body: JSON.stringify({
+        model: "llama3-8b-8192",
+        messages: [
+          {
+            role: "user",
+            content: fakeText
+          }
+        ]
+      })
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`HTTP ${response.status} - ${errorText}`);
+    }
+
+    const data = await response.json();
+    const reply = data.choices?.[0]?.message?.content || "No response from AI.";
+    addMessage("bot", reply);
+  } catch (err) {
+    console.error(err);
+    addMessage("bot", `⚠️ Error: ${err.message}`);
+  }
+}
+
 
 // Voice input (optional)
 function startVoice() {

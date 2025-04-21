@@ -18,7 +18,11 @@ async function sendMessage() {
         messages: [
           {
             role: "system",
-            content: "You are an assistant that ONLY replies with a Data Flow Diagram (DFD) in mermaid.js syntax. DO NOT add any explanations. Start directly with 'flowchart TD'."
+            content: `You are a generator of valid Mermaid.js DFD diagrams.
+Only return a diagram that starts with: flowchart TD
+Use simple node names (A, B, C, etc) and arrows like --> or -- Yes -->.
+Avoid special characters, emojis, or square brackets inside square brackets.
+Return only plain diagram content — no code blocks, markdown, or explanations.`
           },
           {
             role: "user",
@@ -28,38 +32,44 @@ async function sendMessage() {
       })
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`HTTP ${response.status} - ${errorText}`);
-    }
-
     const data = await response.json();
     let dfdText = data.choices?.[0]?.message?.content || "";
 
-    // CLEAN THE RESPONSE
-    const flowchartIndex = dfdText.indexOf("flowchart");
-    if (flowchartIndex !== -1) {
-      dfdText = dfdText.substring(flowchartIndex); // Only keep from "flowchart TD" part
-    } else {
-      dfdText = "flowchart TD\nA --> B"; // fallback default simple DFD
-    }
+    // Clean up content
+    dfdText = dfdText
+      .replace(/```mermaid|```/gi, "")
+      .replace(/^\s*flowchart\s+(LR|TD|RL|BT)?/, "flowchart TD") // force TD for vertical
+      .trim();
 
-    addMessage("bot", "✅ DFD Diagram created below!");
+    // If it doesn't start correctly, fallback
+    if (!dfdText.startsWith("flowchart TD")) {
+      throw new Error("Invalid Mermaid format.");
+    }
 
     const outputDiv = document.getElementById("dfd-output");
     outputDiv.innerHTML = "";
 
     const diagramContainer = document.createElement("div");
     diagramContainer.className = "mermaid";
-    diagramContainer.textContent = dfdText.trim();
-
+    diagramContainer.textContent = dfdText;
     outputDiv.appendChild(diagramContainer);
 
-    mermaid.init(undefined, diagramContainer);
+    await mermaid.run({ nodes: [diagramContainer] });
+
+    addMessage("bot", "✅ DFD Diagram created below!");
 
   } catch (err) {
-    console.error(err);
+    console.error("Mermaid error:", err.message);
     addMessage("bot", `⚠️ Error: ${err.message}`);
+
+    // fallback example
+    const fallback = document.createElement("div");
+    fallback.className = "mermaid";
+    fallback.textContent = `flowchart TD\nA[Invalid Input] --> B[Fallback Diagram]`;
+    const outputDiv = document.getElementById("dfd-output");
+    outputDiv.innerHTML = "";
+    outputDiv.appendChild(fallback);
+    await mermaid.run({ nodes: [fallback] });
   }
 }
 
@@ -70,3 +80,5 @@ function addMessage(sender, content) {
   document.getElementById("chat-messages").appendChild(msg);
   document.getElementById("chat-messages").scrollTop = 9999;
 }
+
+

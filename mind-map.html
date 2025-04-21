@@ -1,30 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🧠 Ultra Stylish Mind Map</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./mind-map.css">
-
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Mind Map Generator</title>
+  <link rel="stylesheet" href="mind-map.css" />
 </head>
 <body>
-  <div class="header">
-    <h1>✳️ Mind Map</h1>
-    <button class="back-button" onclick="history.back()">⬅ Back</button>
-  </div>
-
-  <div class="mindmap-container">
-    <div class="central-idea">💡 Central Idea</div>
-
-    <div class="branches">
-      <div class="branch">Branch 1</div>
-      <div class="branch">Branch 2</div>
-      <div class="branch">Branch 3</div>
-      <!-- You can add more branches below -->
+  
+  <div class="container">
+    <a href="index2.html" class="btn-light">⬅ BACK</a>
+    <div class="input-section">
+      <h1>🧠 AI Mind Map Generator</h1>
+      <textarea id="userInput" placeholder="Type your central idea..."></textarea>
+      <button onclick="generateMindMap()">Generate Mind Map</button>
+    </div>
+    
+    <div class="mindmap-wrapper">
+      <svg id="connector-lines" class="lines"></svg>
+      <div id="mindmap" class="mindmap"></div>
     </div>
   </div>
+  <script src="mind-map.js"></script>
 </body>
 </html>
+

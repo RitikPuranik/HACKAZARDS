@@ -58,11 +58,28 @@ body {
   flex-direction: column;
 }
 
+/* .circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: pulse 3s ease-in-out infinite;
+  z-index: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.circle1 {
+  background-color: #4a90e2;
+}
+
+.circle2 {
+  background-color: #c5e3e6;
+}
+
+/* Default size for large screens */
 .circle {
-  position:absolute;
+  position: absolute;
   top: 20%;
   left: 40%;
-  margin :auto;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   opacity: 0.4;
@@ -75,7 +92,6 @@ body {
   height: 250px;
   background-color: #4a90e2;
   animation-delay: 0s;
-  
 }
 
 .circle2 {
@@ -84,6 +100,19 @@ body {
   background-color: #c5e3e6;
   animation-delay: 1.5s;
 }
+@media (max-width: 768px) {
+  .circle1 {
+    width: 180px;
+    height: 180px;
+  }
+
+  .circle2 {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -98,6 +127,7 @@ body {
     opacity: 0.5;
   }
 }
+
 
 
 .ai-image {
@@ -154,4 +184,36 @@ footer .social-icons a:hover {
   color: white;
   transform: scale(1.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* Stat Cards Enhancements */
+.stat-card {
+  background: white;
+  color: #333;
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.stat-card p {
+  margin: 0;
 }

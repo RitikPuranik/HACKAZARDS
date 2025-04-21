@@ -41,45 +41,40 @@
         <div class="hero-buttons">
           <a href="index2.html" class="btn btn-light text-primary fw-bold">Start Ideating</a>
           <a href="bot.html" class="btn btn-outline-light">Talk to HackWise</a> 
-           <!-- <div class="container mt-4">
-            <input type="text" id="userInput" class="form-control mb-2" placeholder="Ask HackWise...">
-            <button id="sendBtn" class="btn btn-primary">Send</button>
-            <div id="response" class="mt-3 text-light fw-bold"></div> -->
-          </div>
-          <!-- <textarea id="userInput" placeholder="Ask something..."></textarea><br>
-    <button onclick="sendMessage()">Send</button> -->
+       
+         </div>
+   
     <p id="response"></p>
-    <div class="container mt-4">
-      <div class="row">
+  
+    <div class="container mt-5">
+      <div class="row text-center">
         <div class="col-md-4 mb-4">
-          <div class="card">
-            <img src="robot-solid.svg" class="card-img-top" alt="Card 1" style="width: 45px;height:45px;align-self: center;margin: top 10pxpx">
-            <div class="card-body">
-              <h5 class="card-title">Card Title 1</h5>
-              <p class="card-text">This is card number 1.</p>
-            </div>
+          <div class="stat-card shadow-lg p-4 rounded-4 bg-white">
+            <img src="robot-solid.svg" alt="Projects">
+            <h5 class="fw-bold">Projects Made</h5>
+            <p class="stat-number text-primary" data-target="128">0</p>
+            <p>Ideas turned into reality</p>
           </div>
         </div>
         <div class="col-md-4 mb-4">
-          <div class="card">
-            <img src="images.png" class="card-img-top" alt="Card 2"style="width: 45px;align-self: center;margin: top 10pxpx">
-            <div class="card-body">
-              <h5 class="card-title">Card Title 2</h5>
-              <p class="card-text">This is card number 2.</p>
-            </div>
+          <div class="stat-card shadow-lg p-4 rounded-4 bg-white">
+            <img src="images.png" alt="Users">
+            <h5 class="fw-bold">Users Satisfied</h5>
+            <p class="stat-number text-success" data-target="982">0</p>
+            <p>Hackathon heroes helped</p>
           </div>
         </div>
         <div class="col-md-4 mb-4">
-          <div class="card">
-            <img src="note.png" class="card-img-top" alt="Card 3"style="width: 45px;align-self: center;margin: top 10pxpx">
-            <div class="card-body">
-              <h5 class="card-title">Hand on notes</h5>
-              <p class="card-text">This is card number 3.</p>
-            </div>
+          <div class="stat-card shadow-lg p-4 rounded-4 bg-white">
+            <img src="note.png" alt="Notes">
+            <h5 class="fw-bold">Hand on Notes</h5>
+            <p class="stat-number text-danger" data-target="76">0</p>
+            <p>Guides & resources shared</p>
           </div>
         </div>
       </div>
     </div>
+    
     <footer class="bg-light text-dark pt-5 pb-4 mt-5">
       <div id= last class="container text-center text-md-start">
         <div class="row align-items-start">
@@ -103,24 +98,7 @@
             </ul>
           </div>
     
-          <!-- Social Links -->
-          <!-- <div class="col-md-6 mb-4 text-md-end">
-            <h5 class="text-uppercase fw-bold mb-4"><i class="bi bi-share-fill me-2"></i>Follow Us</h5>
-            <a href="#" class="text-dark me-3">
-              <i class="bi bi-facebook fs-4"></i>
-            </a>
-            <a href="#" class="text-dark me-3">
-              <i class="bi bi-twitter fs-4"></i>
-            </a>
-            <a href="#" class="text-dark me-3">
-              <i class="bi bi-linkedin fs-4"></i>
-            </a>
-            <a href="#" class="text-dark">
-              <i class="bi bi-instagram fs-4"></i>
-            </a>
-          </div>
-     -->
-        <!-- </div> -->
+       
          <!-- Social Links -->
 <div class="col-md-6 mb-4 text-md-end">
   <h5 class="text-uppercase fw-bold mb-4"><i class="bi bi-share-fill me-2"></i> Connect with Us on :-</h5>
@@ -160,5 +138,46 @@ console.log("Bot response:", reply);
             document.getElementById("response").innerText = "Groq: " + data.reply;
         }
     </script>
+<script>
+  const counters = document.querySelectorAll('.stat-number');
+  let hasAnimated = false;
+
+  const animateNumbers = () => {
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      const updateCount = () => {
+        const count = +counter.innerText;
+        const increment = target / 100;
+
+        if (count < target) {
+          counter.innerText = Math.ceil(count + increment);
+          setTimeout(updateCount, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCount();
+    });
+  };
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAnimated) {
+          animateNumbers();
+          hasAnimated = true; // only run once
+        }
+      });
+    },
+    {
+      threshold: 0.3, // Trigger when 30% of the section is visible
+    }
+  );
+
+  const statsSection = document.querySelector('.stat-card').parentNode.parentNode;
+  observer.observe(statsSection);
+</script>
+
+    
 </body>
 </html>

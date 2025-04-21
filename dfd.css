@@ -116,4 +116,18 @@ button:hover {
   color: #0f172a;
   font-size: 1rem;
 }
+.btn-light {
+  background: rgb(59, 157, 248);
+  color: #f1f7f5;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s;
+ margin-left: 90%;
+}
+
+.btn-light:hover {
+  background: #0466e6;
+}
 
